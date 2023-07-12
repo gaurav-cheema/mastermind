@@ -1,4 +1,5 @@
 import Dot from './Dot'
+import '../css/Board.css'
 
 const Row = ({ rowNumber }) => {
   const rowLength = 4;

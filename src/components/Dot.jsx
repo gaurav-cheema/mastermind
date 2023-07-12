@@ -1,4 +1,4 @@
-import '../css/Dot.css'
+import '../css/Board.css'
 
 function Dot() {
   return (

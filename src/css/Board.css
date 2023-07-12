@@ -1,5 +1,17 @@
 .board {
-  display:grid;
-  grid-template-columns: repeat(10, 1fr);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   grid-gap: 5px;
+}
+
+.row {
+  display: flex;
+}
+
+.dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: red;
 }
