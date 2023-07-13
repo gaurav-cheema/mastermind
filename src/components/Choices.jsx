@@ -7,12 +7,15 @@ const Choices = () => {
 
   for (let i = 0; i < colors.length; i++) {
     colorsBtn.push(<Dot className='colorDot' bgColor={colors[i]}/>)
-    
   }
+
+  colorsBtn.push(<div>
+    X
+  </div>)
 
   return (
     <>
-      <div className='playerPegs'>{colorsBtn}</div>
+      <div className='choicesBoard'>{colorsBtn}</div>
     </>
   )
 }

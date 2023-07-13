@@ -13,9 +13,9 @@ const Board = () => {
 
   for (let i = boardLength - 1; i >= 0; i--) {
     rows.push(
-      <li>
-        <Row key={i} rowNumber={i} />
-      </li>
+      <div>
+        <Row val={i} rowNumber={i} />
+      </div>
     )
   }
   return (

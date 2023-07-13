@@ -1,8 +1,25 @@
 .enclosure {
   display: flex;
-  width:auto;
+  width: auto;
   text-align: center;
   justify-content: center;
+}
+
+.flex-container {
+  width: 20vw;
+  display: flex;
+  border: 2px;
+  border-style: solid;
+  margin: 5px;
+  padding: 5px;
+  grid-template-areas: 'pegRow resSquare';
+  /* justify-content: space-evenly; */
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
 }
 
 .board {
@@ -14,6 +31,13 @@
   margin: 0
 }
 
+.row {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
 .mainDot {
   display: inline-block;
   width: 20px;
@@ -23,48 +47,49 @@
   border-style: solid;
   /* background-color: #1d4eae; */
   margin: 5px;
+  padding: 3px;
 }
 
-.playerPegs {
+.choicesBoard {
   height: inherit;
   /* width: 10px; */
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
   /* align-items:stretch; */
-  background-color: aquamarine;
+  background-color: rgb(218, 218, 218);
   justify-content: space-evenly;
+  border-style: solid;
+  border-width: 2px;
+  margin: 5px;
 }
 
 .colorDot {
   display: inline-block;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background-color: #1d4eae;
-  margin: 5px;
-}
-
-.resSquare {
-  width: 120px;
-  height: 36px;
-  border: 1px;
-  border-style: solid;
-}
-
-.resDot {
-  display: inline-block;
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background-color: red;
-  margin: 5px;
+  border-style: solid;
+  margin: 10px;
+  padding: 10px;
 }
 
-.grid-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+.resSquare {
+  display: inline-grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  width:fit-content;
+  /* height:fit-content; */
   border: 1px;
-  border-style: solid;
-  margin: 5px;
-  /* padding: 5px; */
+  /* border-style: solid; */
+  /* grid-area: resSquare; */
+  margin: 2px;
+}
+
+.resDot {
+  /* display: grid; */
+  padding: 4px;
+  justify-content: center;
+  /* border-radius: 50%;
+  background-color: red; */
+  /* margin: 5px; */
 }
