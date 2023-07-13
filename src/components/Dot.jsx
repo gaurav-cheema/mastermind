@@ -1,9 +1,7 @@
 import '../css/Board.css'
 
-function Dot() {
-  return (
-    <span className="dot"></span>
-  );
+const Dot = ({ className, bgColor }) => {
+  return <span className={className} style={{backgroundColor: bgColor}}></span>
 }
 
-export default Dot;
+export default Dot

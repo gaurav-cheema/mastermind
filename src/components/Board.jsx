@@ -1,14 +1,40 @@
 import Row from './Row'
+import Choices from './Choices'
 import '../css/Board.css'
+
+// const mainDivStyle = {
+//   display: 'flex',
+//   justifyContent: 'center'
+// }
 
 const Board = () => {
   const boardLength = 10
   const rows = []
 
-  for (let i = 0; i < boardLength; i++) {
-    rows.push(<Row key={i} />)
+  for (let i = boardLength - 1; i >= 0; i--) {
+    rows.push(
+      <li>
+        <Row key={i} rowNumber={i} />
+      </li>
+    )
   }
-  return <div className='board'>{rows}</div>
+  return (
+    <>
+      <div className='enclosure'>
+        <Choices />
+        <div className='board'>{rows}</div>
+      </div>
+    </>
+  )
 }
+
+/* <div style={mainDivStyle}>
+  <div className='enclosure'>
+    <div className='playerPegs'>
+      <Choices />
+    </div>
+    <ul className='board'>{rows}</ul>
+  </div>
+</div> */
 
 export default Board

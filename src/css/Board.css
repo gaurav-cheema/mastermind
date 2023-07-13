@@ -1,17 +1,70 @@
-.board {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 5px;
-}
-
-.row {
+.enclosure {
   display: flex;
+  width:auto;
+  text-align: center;
+  justify-content: center;
 }
 
-.dot {
+.board {
+  text-align: center;
+  display: inline-block;
+  /* grid-gap: 5px; */
+  list-style-type: none;
+  padding: 0;
+  margin: 0
+}
+
+.mainDot {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border-color: black;
+  border-style: solid;
+  /* background-color: #1d4eae; */
+  margin: 5px;
+}
+
+.playerPegs {
+  height: inherit;
+  /* width: 10px; */
+  display: flex;
+  flex-direction:column;
+  /* align-items:stretch; */
+  background-color: aquamarine;
+  justify-content: space-evenly;
+}
+
+.colorDot {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #1d4eae;
+  margin: 5px;
+}
+
+.resSquare {
+  width: 120px;
+  height: 36px;
+  border: 1px;
+  border-style: solid;
+}
+
+.resDot {
   display: inline-block;
   width: 10px;
   height: 10px;
   border-radius: 50%;
   background-color: red;
+  margin: 5px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  border: 1px;
+  border-style: solid;
+  margin: 5px;
+  /* padding: 5px; */
 }
