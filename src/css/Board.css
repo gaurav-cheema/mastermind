@@ -6,26 +6,19 @@
 }
 
 .flex-container {
-  width: 20vw;
+  width: 30vw;
   display: flex;
   border: 2px;
   border-style: solid;
   margin: 5px;
   padding: 5px;
   grid-template-areas: 'pegRow resSquare';
-  /* justify-content: space-evenly; */
-}
-
-.grid-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
 }
 
 .board {
   text-align: center;
-  display: inline-block;
-  /* grid-gap: 5px; */
+  display: flex;
+  flex-direction: column;
   list-style-type: none;
   padding: 0;
   margin: 0
@@ -45,51 +38,75 @@
   border-radius: 50%;
   border-color: black;
   border-style: solid;
-  /* background-color: #1d4eae; */
   margin: 5px;
   padding: 3px;
 }
 
+/*! PLAYER INPUT BOARD STYLES BELOW */
+
 .choicesBoard {
   height: inherit;
-  /* width: 10px; */
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
-  /* align-items:stretch; */
   background-color: rgb(218, 218, 218);
-  justify-content: space-evenly;
+  justify-content: space-around;
+  align-items: center;
   border-style: solid;
   border-width: 2px;
   margin: 5px;
 }
 
+.colorTray {
+  display: flex;
+  flex-grow: 5;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
 .colorDot {
   display: inline-block;
+  justify-items: space-around;
   width: 10px;
   height: 10px;
-  border-radius: 50%;
   border-style: solid;
-  margin: 10px;
   padding: 10px;
+}
+
+.choiceBtnContainer {
+  display: flex;
+  flex-direction: column;
+  /* flex-grow: ; */
+}
+
+/*! OUTPUT PEGS STYLES BELOW  */
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
 }
 
 .resSquare {
   display: inline-grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-  width:fit-content;
-  /* height:fit-content; */
+  width: fit-content;
   border: 1px;
-  /* border-style: solid; */
-  /* grid-area: resSquare; */
   margin: 2px;
 }
 
 .resDot {
-  /* display: grid; */
-  padding: 4px;
+  width: 20px;
+  height: 20px;
   justify-content: center;
-  /* border-radius: 50%;
-  background-color: red; */
-  /* margin: 5px; */
+  background-color: rgb(178, 178, 178);
+  margin: 3px;
+}
+
+.activeArrow {
+  height: inherit;
+  width: 50px;
+  background-color: steelblue;
+  border-radius: 30%;
+  margin: 0 10px;
 }
