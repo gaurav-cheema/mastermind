@@ -1,7 +1,7 @@
 import '../css/Board.css'
 
-const Dot = ({ className, val, bgColor, letter }) => {
-  return <span className={className} val={val} style={{backgroundColor: bgColor}}>{letter}</span>
+const Dot = ({ className, val, id }) => {
+  return <span className={className} id={id} val={val}></span>
 }
 
 export default Dot

@@ -1,33 +1,46 @@
-import Dot from './Dot'
 import '../css/Board.css'
+import ChoiceBtn from './ChoiceBtn'
 
-const clearBtnStyle = {
-  // display: 'flex',
-  backgroundColor: 'black',
-  padding: '5px',
-  color: 'white',
-  fontWeight: 'bold',
-  fontSize: 20,
-  margin: '20px 0'
-}
-
-
-const Choices = () => {
+const Choices = ({ onClick }) => {
   const colors = ['red', 'blue', 'green', 'yellow', 'brown']
   const colorsBtn = []
 
-  for (let i = 0; i < colors.length; i++) {
-    colorsBtn.push(<Dot className='colorDot' bgColor={colors[i]} />)
+  const handleColorBtn = () => {
+    console.log('clicked!')
   }
+
+  for (let i = 0; i < colors.length; i++) {
+    colorsBtn.push(
+      <ChoiceBtn
+        id={'colorBtn' + (i + 1)}
+        className='colorDot'
+        bgColor={colors[i]}
+        onClick={handleColorBtn}
+      />
+    )
+  }
+  colorsBtn.push(
+    <ChoiceBtn
+      id='clearBtn'
+      className='clearBtnStyle'
+      word='CLEAR'
+      bgColor='black'
+    />
+  )
+  colorsBtn.push(
+    <ChoiceBtn
+      id='enterBtn'
+      className='clearBtnStyle'
+      word='ENTER'
+      bgColor='black'
+      // onClick={handleColorBtn}
+    />
+  )
 
   return (
     <>
       <div className='choicesBoard'>
         <div className='colorTray'>{colorsBtn}</div>
-        <div>
-          <div style={clearBtnStyle}>CLEAR</div>
-          <div style={clearBtnStyle}>ENTER</div>
-        </div>
       </div>
     </>
   )

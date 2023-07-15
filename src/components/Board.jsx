@@ -5,7 +5,7 @@ import Choices from './Choices'
 import '../css/Board.css'
 
 const Board = () => {
-  const [activeRow, setActiveRow] = useState(0)
+  let activeRow = 0
 
   return (
     <>
