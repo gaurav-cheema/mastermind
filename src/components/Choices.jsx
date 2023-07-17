@@ -1,21 +1,17 @@
 import '../css/Board.css'
 import ChoiceBtn from './ChoiceBtn'
+import { colors } from '../shared/Colors'
 
 const Choices = ({ onClick }) => {
-  const colors = ['red', 'blue', 'green', 'yellow', 'brown']
   const colorsBtn = []
-
-  const handleColorBtn = () => {
-    console.log('clicked!')
-  }
 
   for (let i = 0; i < colors.length; i++) {
     colorsBtn.push(
       <ChoiceBtn
-        id={'colorBtn' + (i + 1)}
+        id={colors[i]}
         className='colorDot'
         bgColor={colors[i]}
-        onClick={handleColorBtn}
+        onClick={onClick}
       />
     )
   }
@@ -25,6 +21,7 @@ const Choices = ({ onClick }) => {
       className='clearBtnStyle'
       word='CLEAR'
       bgColor='black'
+      onClick={onClick}
     />
   )
   colorsBtn.push(
@@ -33,14 +30,18 @@ const Choices = ({ onClick }) => {
       className='clearBtnStyle'
       word='ENTER'
       bgColor='black'
-      // onClick={handleColorBtn}
+      onClick={onClick}
     />
   )
+
+  const setActiveColor = () => {
+    
+  }
 
   return (
     <>
       <div className='choicesBoard'>
-        <div className='colorTray'>{colorsBtn}</div>
+        <div className='colorTray' onClick={setActiveColor}>{colorsBtn}</div>
       </div>
     </>
   )

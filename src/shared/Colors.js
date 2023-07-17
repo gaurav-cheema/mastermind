@@ -1,7 +1,7 @@
-import colors from '../shared/Colors'
+const colors = ['red', 'aqua', 'lime', 'yellow', 'fuchsia']
 
 const generateCode = () => {
-  const colorLen = len(colors)
+  const colorLen = colors.length
   const codeLen = 4
   const code = []
 
@@ -9,5 +9,8 @@ const generateCode = () => {
     code.push(colors[Math.floor(Math.random() * colorLen)])
   }
 
+  return code
   console.log(code)
 }
+
+export { colors, generateCode }

@@ -1,11 +1,15 @@
+// import { useEffect, useState } from 'react'
 import Dot from './Dot'
 import '../css/Board.css'
+
 
 const Row = ({ val, count }) => {
   const rowLength = 4
   let dots = []
   let resBar = []
   let rows = []
+
+  // const [choice, setChoice] = useState();
 
   //* make a row of mainDots and resDots
   //* then add n rows to array to return
