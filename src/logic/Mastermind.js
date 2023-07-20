@@ -1,13 +1,46 @@
-import colors from '../shared/Colors'
+import Board from '../components/Board'
 
-const generateCode = () => {
-  const colorLen = len(colors)
-  const codeLen = 4
-  const code = []
+export default function MainLogic (choice) {
+  let arr = []
+  let input = choice
+  let inputCount = 0
+  let activeRow = 0
 
-  for (let i = 0; i < codeLen; i++) {
-    code.push(colors[Math.floor(Math.random() * colorLen)])
+  if (input === 'clearBtn') {
+    arr = []
+    inputCount = 0
+  } //todo re-render row
+
+  if (arr.length == 4) {
+    if (input === 'enterBtn') {
+      arr = []
+      inputCount = 0
+      activeRow++
+      //todo Fetch result
+      //todo update resDots and re-render
+    } else {
+      //todo Do nothing or alert stating input complete (?)
+    }
+  } else {
+    if (input === 'enterBtn') {
+      //todo Do nothing or show alert?
+    } else {
+      arr.push(input)
+      inputCount++
+    }
   }
+  return {
+    'currentDot': activeRow * 4 + inputCount,
+    'blackResDot': 2,
+    'whiteResDot': 2
+  }
+}
 
-  console.log(code)
+function checkCode (inputCode, targetCode) {
+  let temp = targetCode
+
+  for (let i = 0; i < targetCode.length; i++) {
+    
+    
+  }
 }

@@ -1,22 +1,30 @@
-// import { useState, useEffect } from 'react'
-// import
+import { useState, useEffect, useRef } from 'react'
 
+import MainLogic from '../logic/Mastermind'
 import Row from './Row'
 import Choices from './Choices'
 import '../css/Board.css'
 
 const Board = () => {
-  let activeRow = 0
-  let activeColor = null
+  // const inputCountRef = useRef(0)
+  // const currChoiceRef = useRef('')
+  let retObj = null
 
-  const handle = e => {
-    activeColor = e.currentTarget.id
+  const [color, setColor] = useState(
+    
+  )
+
+  function handleInput (e) {
+    const choice = e.currentTarget.id
+    retObj = MainLogic(choice)
   }
+
+  function updateDot () {}
 
   return (
     <>
       <div className='enclosure'>
-        <Choices onClick={handle} />
+        <Choices handleInput={handleInput} />
         <div className='board'>
           <Row count='10' />
         </div>

@@ -1,47 +1,44 @@
+import { useState } from 'react'
 import '../css/Board.css'
 import ChoiceBtn from './ChoiceBtn'
 import { colors } from '../shared/Colors'
 
-const Choices = ({ onClick }) => {
+const Choices = ({ handleInput }) => {
   const colorsBtn = []
 
   for (let i = 0; i < colors.length; i++) {
     colorsBtn.push(
       <ChoiceBtn
-        id={colors[i]}
+        key={colors[i]}
         className='colorDot'
         bgColor={colors[i]}
-        onClick={onClick}
+        onClick={e => handleInput(e)}
       />
     )
   }
   colorsBtn.push(
     <ChoiceBtn
-      id='clearBtn'
+      key='clearBtn'
       className='clearBtnStyle'
       word='CLEAR'
       bgColor='black'
-      onClick={onClick}
+      onClick={e => handleInput(e)}
     />
   )
   colorsBtn.push(
     <ChoiceBtn
-      id='enterBtn'
+      key='enterBtn'
       className='clearBtnStyle'
       word='ENTER'
       bgColor='black'
-      onClick={onClick}
+      onClick={e => handleInput(e)}
     />
   )
 
-  const setActiveColor = () => {
-    
-  }
-
   return (
     <>
-      <div className='choicesBoard'>
-        <div className='colorTray' onClick={setActiveColor}>{colorsBtn}</div>
+      <div className='choicesBoard' key='choiceBoard'>
+        <div className='colorTray'>{colorsBtn}</div>
       </div>
     </>
   )
