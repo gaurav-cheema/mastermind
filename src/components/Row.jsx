@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import Dot from './Dot'
 import '../css/Board.css'
 
-const Row = ({ count }) => {
+const Row = ({ count, mainColorState, resColorState }) => {
   const rowLength = 4
   let dots = []
   let resBar = []
@@ -21,21 +21,23 @@ const Row = ({ count }) => {
       dots.push(
         <Dot
           className='mainDot'
-          key={rowInd * 4 + dotInd}
           id={rowInd * 4 + dotInd}
+          key={rowInd * 4 + dotInd}
+          bgColor={mainColorState[rowInd][dotInd].bgColor}
         />
       )
       resBar.push(
         <Dot
           className='resDot'
-          key={'res' + (rowInd * 4 + dotInd)}
           letter=''
           id={'res' + (rowInd * 4 + dotInd)}
+          key={'res' + (rowInd * 4 + dotInd)}
+          bgColor={resColorState[rowInd][dotInd].bgColor}
         />
       )
     }
     rows.push(
-      <div className='flex-container' key={'row' + rowInd}>
+      <div className='flex-container' key={'row' + rowInd} id={'row' + rowInd}>
         <div className='row'>{dots}</div>
         <div className='grid-container'>{resBar}</div>
         <div className='activeArrow'></div>

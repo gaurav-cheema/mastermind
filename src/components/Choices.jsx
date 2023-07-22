@@ -3,16 +3,17 @@ import '../css/Board.css'
 import ChoiceBtn from './ChoiceBtn'
 import { colors } from '../shared/Colors'
 
-const Choices = ({ handleInput }) => {
+const Choices = ({ handleInput, onClick }) => {
   const colorsBtn = []
 
   for (let i = 0; i < colors.length; i++) {
     colorsBtn.push(
       <ChoiceBtn
         key={colors[i]}
+        id={colors[i]}
         className='colorDot'
         bgColor={colors[i]}
-        onClick={e => handleInput(e)}
+        handleMethod={e => handleInput(e)}
       />
     )
   }
