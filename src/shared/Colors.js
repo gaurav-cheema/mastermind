@@ -13,4 +13,6 @@ const generateCode = () => {
   console.log(code)
 }
 
-export { colors, generateCode }
+let code = generateCode()
+
+export { colors, code }

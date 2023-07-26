@@ -1,9 +1,8 @@
-import { useState } from 'react'
 import '../css/Board.css'
 import ChoiceBtn from './ChoiceBtn'
 import { colors } from '../shared/Colors'
 
-const Choices = ({ handleInput, onClick }) => {
+const Choices = ({ handleInput }) => {
   const colorsBtn = []
 
   for (let i = 0; i < colors.length; i++) {
@@ -19,20 +18,22 @@ const Choices = ({ handleInput, onClick }) => {
   }
   colorsBtn.push(
     <ChoiceBtn
+      id='clearBtn'
       key='clearBtn'
       className='clearBtnStyle'
       word='CLEAR'
       bgColor='black'
-      onClick={e => handleInput(e)}
+      handleMethod={e => handleInput(e)}
     />
   )
   colorsBtn.push(
     <ChoiceBtn
+      id='enterBtn'
       key='enterBtn'
       className='clearBtnStyle'
       word='ENTER'
       bgColor='black'
-      onClick={e => handleInput(e)}
+      handleMethod={e => handleInput(e)}
     />
   )
 

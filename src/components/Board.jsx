@@ -1,6 +1,6 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 
-import MainLogic from '../logic/Mastermind'
+import { MainLogic } from '../logic/Mastermind'
 import Row from './Row'
 import Choices from './Choices'
 import '../css/Board.css'
@@ -9,10 +9,13 @@ const Board = () => {
   // const inputCountRef = useRef(0)
   // const currChoiceRef = useRef('')
   const numOfRows = 10
-  let choice;
-  let retObj = null
+  let choice
+  let row,
+    col = null
 
-  const [activeDot, setActiveDot] = useState(5)
+  const overwrite = useRef(false)
+  const currentDot = useRef(0)
+  const inputCount = useRef(0)
 
   let mainDotStates = []
   let resDotStates = []
@@ -33,20 +36,50 @@ const Board = () => {
   const [mainColorState, setMainColorState] = useState(mainDotStates)
   const [resColorState, setResColorState] = useState(resDotStates)
 
-  const handleInput = (e) => {
+  const handleInput = e => {
     choice = e.currentTarget.id
-    const c = [Math.floor(activeDot/4), activeDot % 4]
-    mainColorState[c[0]][c[1]].bgColor = choice
+    let { modufive, pColor, pCount, pActiveDot } =
+      MainLogic(choice, currentDot.current, inputCount.current)
+
+    row = Math.max(Math.floor(currentDot.current / 4), 0)
+    col = currentDot.current % 4
+
+    if (modufive === 'purge') {
+      let clearingRow = Math.floor(currentDot.current / 4)
+      console.log(clearingRow)
+      for (let i = 0; i < 4; i++) {
+        mainColorState[clearingRow][i].bgColor = 'white'
+      }
+    }
+
+    if (modufive === true) {
+      mainColorState[row][col].bgColor = pColor
+    }
+
+    if (modufive === 'overwrite') {
+      pCount = row * 4
+    }
+
+    inputCount.current = pCount
+    currentDot.current = pActiveDot
     setMainColorState([...mainColorState])
-    setActiveDot(activeDot+1)
+
+    
   }
 
   return (
     <>
       <div className='enclosure'>
-        <Choices handleInput={handleInput}/>
+        <Choices
+          handleInput={handleInput}
+          onClick={currentDot => currentDot + 1}
+        />
         <div className='board'>
-          <Row count={numOfRows} mainColorState={mainColorState} resColorState={resColorState}/>
+          <Row
+            count={numOfRows}
+            mainColorState={mainColorState}
+            resColorState={resColorState}
+          />
         </div>
       </div>
     </>

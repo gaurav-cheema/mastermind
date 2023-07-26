@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react'
 import Dot from './Dot'
 import '../css/Board.css'
 
@@ -7,12 +6,6 @@ const Row = ({ count, mainColorState, resColorState }) => {
   let dots = []
   let resBar = []
   let rows = []
-
-  const [choice, setChoice] = useState()
-
-  function updateDot (input) {
-    setChoice(input)
-  }
 
   //* make a row of mainDots and resDots
   //* then add n rows to array to return
@@ -51,5 +44,3 @@ const Row = ({ count, mainColorState, resColorState }) => {
 }
 
 export default Row
-
-// export {updateDot}

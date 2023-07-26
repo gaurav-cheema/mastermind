@@ -1,9 +1,8 @@
 import '../css/Board.css'
 
-const Dot = ({ className, bgColor, updateColor, id, dotNum }) => {
+const Dot = ({ className, bgColor, id }) => {
   return (
     <span
-      // dotNum={dotNum}
       id={id}
       className={className}
       style={{ backgroundColor: bgColor }}
