@@ -1,0 +1,7 @@
+? Whats lef to do?
+* 1. A button to reset the board / reload the page
+* 2. Display victory screen
+* 3. Display defeat screen
+* 4. Have a div at the bottom showing hidden code
+* 5. Display the rules of the game or have an about game page.
+    * So this option should be easy if we show an alert for rules.

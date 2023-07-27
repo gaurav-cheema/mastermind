@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef } from 'react'
 
 import { MainLogic } from '../logic/Mastermind'
 import Row from './Row'
@@ -9,45 +9,60 @@ const Board = () => {
   // const inputCountRef = useRef(0)
   // const currChoiceRef = useRef('')
   const numOfRows = 10
+  const rowWidth = 4
   let choice
   let row,
     col = null
 
-  const overwrite = useRef(false)
   const currentDot = useRef(0)
   const inputCount = useRef(0)
 
   let mainDotStates = []
   let resDotStates = []
+  let arrowStates = []
   for (let i = 0; i < numOfRows; i++) {
     let temp1 = []
     let temp2 = []
-    for (let j = 0; j < 4; j++) {
-      let id = i * 4 + j
+    for (let j = 0; j < rowWidth; j++) {
+      let id = i * rowWidth + j
       temp1.push({ id: id, bgColor: 'white' })
       temp2.push({ id: 'res' + id, bgColor: 'gray' })
     }
+    arrowStates.push({ id: 'aa' + i, letter: '' })
     mainDotStates.push(temp1)
     resDotStates.push(temp2)
     temp1 = []
     temp2 = []
   }
 
+  arrowStates[0].letter = `\u23fa`
+
   const [mainColorState, setMainColorState] = useState(mainDotStates)
   const [resColorState, setResColorState] = useState(resDotStates)
+  const [activeArrowState, setActiveArrowState] = useState(arrowStates)
 
   const handleInput = e => {
     choice = e.currentTarget.id
-    let { modufive, pColor, pCount, pActiveDot } =
-      MainLogic(choice, currentDot.current, inputCount.current)
+    row = Math.max(Math.floor(currentDot.current / rowWidth), 0)
+    col = currentDot.current % rowWidth
 
-    row = Math.max(Math.floor(currentDot.current / 4), 0)
-    col = currentDot.current % 4
+    if (row === 10) {
+      alert('YOU LOST... You have brought shame to your family.')
+      window.location.reload()
+    }
+
+    let { modufive, pColor, pCount, pActiveDot, blackCount, whiteCount } =
+      MainLogic(
+        choice,
+        currentDot.current,
+        inputCount.current,
+        mainColorState[row]
+      )
 
     if (modufive === 'purge') {
-      let clearingRow = Math.floor(currentDot.current / 4)
+      let clearingRow = Math.floor(currentDot.current / rowWidth)
       console.log(clearingRow)
-      for (let i = 0; i < 4; i++) {
+      for (let i = 0; i < rowWidth; i++) {
         mainColorState[clearingRow][i].bgColor = 'white'
       }
     }
@@ -57,14 +72,36 @@ const Board = () => {
     }
 
     if (modufive === 'overwrite') {
-      pCount = row * 4
+      pCount = row * rowWidth
+    }
+
+    if (modufive === 'updateResult') {
+      let ind = 0
+      for (let i = 0; i < blackCount; i++) {
+        resColorState[row][ind].bgColor = 'black'
+        ind++
+
+        if (ind === 4) {
+          alert('YOU WON!!! Congratulations on having deductive skills.')
+          window.location.reload()
+        }
+      }
+
+      for (let i = 0; i < whiteCount; i++) {
+        resColorState[row][ind].bgColor = 'white'
+        ind++
+      }
+      activeArrowState[row].letter = `\u2714`
+      if (row + 1  != numOfRows) {
+        activeArrowState[row+1].letter = `\u23fa`
+      }
     }
 
     inputCount.current = pCount
     currentDot.current = pActiveDot
     setMainColorState([...mainColorState])
-
-    
+    setResColorState([...resColorState])
+    setActiveArrowState([...activeArrowState])
   }
 
   return (
@@ -79,6 +116,7 @@ const Board = () => {
             count={numOfRows}
             mainColorState={mainColorState}
             resColorState={resColorState}
+            activeArrowState={activeArrowState}
           />
         </div>
       </div>

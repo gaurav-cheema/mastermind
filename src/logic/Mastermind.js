@@ -1,4 +1,3 @@
-import Board from '../components/Board'
 import { code } from '../shared/Colors'
 
 /*
@@ -17,20 +16,35 @@ import { code } from '../shared/Colors'
 
 */
 
-function MainLogic (input, currentDot, inputCount) {
+/*
+?? How to implement resDot output?
+* 1. Invoke checkCode in MainLogic and return the resDots?
+*     That will make it more organized to update their state.
+
+* 2. Invoke checkCode in handleInput separately?
+*     Not sure yet how that will look.
+*     Will require us to write more code underneat setMainColorState line
+
+*/
+
+function MainLogic (input, currentDot, inputCount, colorArr) {
   let modify = true
+
+  // console.log(code);
 
   //! HUGE PROBLEM!!
   //! When input count reaches 4, active dot is shifted to next row.
   //! So, the player is not able to clear the input
   let currentRow = Math.floor(currentDot / 4)
+  let black,
+    white = null
 
-  console.log(`currDot: ${currentDot} --- currRow: ${currentRow}`)
+  // console.log(`currDot: ${currentDot} --- currRow: ${currentRow}`)
+  // console.log(colorArr)
 
   switch (true) {
     case input === 'clearBtn':
       modify = 'purge'
-      input = null
       inputCount = 0
       currentDot = currentRow * 4
       break
@@ -39,11 +53,11 @@ function MainLogic (input, currentDot, inputCount) {
       if (inputCount < 4) {
         alert('Only a 4 colored code can be submitted')
       } else if (inputCount === 4) {
-        modify = false
-        input = 'white'
+        modify = 'updateResult'
         inputCount = 0
-        currentDot = (currentRow+1) * 4
-        //todo RETURN RESULT
+        currentDot = (currentRow + 1) * 4
+        colorArr = colorArr.map(a => a.bgColor)
+        ;({ black, white } = checkCode(colorArr))
       } else {
         console.log('ERROR: If you reached here, the code is not right')
       }
@@ -56,7 +70,7 @@ function MainLogic (input, currentDot, inputCount) {
         if (inputCount !== 4) currentDot += 1
       } else if (inputCount === 4) {
         modify = false
-        currentDot = (currentRow ) * 4 + 3
+        currentDot = currentRow * 4 + 3
       } else {
         console.log('ERROR - input count over 4! Bug somewhere')
       }
@@ -72,17 +86,42 @@ function MainLogic (input, currentDot, inputCount) {
     pColor: input,
     pCount: inputCount,
     pActiveDot: currentDot,
-    blackResDot: null,
-    whiteResDot: null
+    blackCount: black,
+    whiteCount: white
   }
 }
 
-function checkCode (inputCode, targetCode) {
-  let temp = targetCode
-  
-  for (let i = 0; i < targetCode.length; i++) {
-    
+function checkCode (inputCode) {
+  let input = [...inputCode]
+  let temp = [...code]
+  let black = 0
+  let white = 0
+
+  for (let i = 0; i < code.length; i++) {
+    if (temp[i] === input[i]) {
+      black += 1
+      input[i] = null
+      temp[i] = null
+    }
+  }
+
+  console.log(`black: ${black}`)
+
+  for (let i = 0; i < code.length; i++) {
+    if (input[i] !== null) {
+      let tempIndex = temp.indexOf(input[i])
+      if (tempIndex !== -1) {
+        white += 1
+        temp[tempIndex] = null
+      }
+    }
+  }
+
+  console.log(black, ' ', white)
+  return {
+    black: black,
+    white: white
   }
 }
 
-export {MainLogic, checkCode}
+export { MainLogic, checkCode }

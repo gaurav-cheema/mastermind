@@ -1,4 +1,4 @@
-const colors = ['red', 'aqua', 'lime', 'yellow', 'fuchsia']
+const colors = ['red', 'deepskyblue', 'springgreen', 'yellow', 'violet']
 
 const generateCode = () => {
   const colorLen = colors.length
@@ -10,7 +10,6 @@ const generateCode = () => {
   }
 
   return code
-  console.log(code)
 }
 
 let code = generateCode()

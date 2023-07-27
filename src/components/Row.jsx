@@ -1,7 +1,7 @@
 import Dot from './Dot'
 import '../css/Board.css'
 
-const Row = ({ count, mainColorState, resColorState }) => {
+const Row = ({ count, mainColorState, resColorState, activeArrowState }) => {
   const rowLength = 4
   let dots = []
   let resBar = []
@@ -33,7 +33,13 @@ const Row = ({ count, mainColorState, resColorState }) => {
       <div className='flex-container' key={'row' + rowInd} id={'row' + rowInd}>
         <div className='row'>{dots}</div>
         <div className='grid-container'>{resBar}</div>
-        <div className='activeArrow'></div>
+        <div className='flex-container activeArrowContainer'>
+          <Dot
+            className='activeArrow'
+            key={'aa' + rowInd}
+            letter={activeArrowState[rowInd].letter}
+          />
+        </div>
       </div>
     )
     dots = []

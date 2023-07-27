@@ -12,7 +12,8 @@
   border-style: solid;
   margin: 5px;
   padding: 5px;
-  grid-template-areas: 'pegRow resSquare';
+  background-color: silver;
+  /* grid-template-areas: 'pegRow resSquare'; */
 }
 
 .board {
@@ -48,7 +49,7 @@
   height: inherit;
   display: inline-flex;
   flex-direction: column;
-  background-color: rgb(218, 218, 218);
+  background-color: silver;
   justify-content: space-around;
   align-items: center;
   border-style: solid;
@@ -107,17 +108,32 @@
 }
 
 .resDot {
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   justify-content: center;
   background-color: rgb(178, 178, 178);
   margin: 3px;
+  border-width: 3px;
+  border-color: black;
+  border-style: solid;
+  border-radius: 20%;
+}
+
+.activeArrowContainer {
+  display: flex;
+  width: fit-content;
+  border-style: none;
+  align-items: center;
 }
 
 .activeArrow {
-  height: inherit;
-  width: 50px;
-  background-color: steelblue;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  width: 30px;
+  background-color: silver;
   border-radius: 30%;
-  margin: 0 10px;
+  font-weight: 800;
+  font-size: larger;
 }
