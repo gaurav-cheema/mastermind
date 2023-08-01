@@ -6,6 +6,7 @@
 }
 
 .flex-container {
+  min-width: fit-content;
   width: 30vw;
   display: flex;
   border: 2px;
